@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1K Journeys</title>
+<link rel="shortcut icon" type="image/x-icon" href="Images/favicon.ico"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="main.css">
+
+<!-- Import and configure the Firebase SDK -->
+  <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
+  <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
+  <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-auth.js"></script>
+  
+  <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+  <script src="default.js"></script>
+	
+</head>
+
+<body class="w3-theme-l5">
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Home</a>
+  <div class="w3-dropdown-hover w3-hide-small">
+    <button class="w3-button w3-padding-large" title="Notifications">Sign in</button>     
+    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+      <a href="google.html" class="w3-bar-item w3-button"><i class="fa fa-google w3-margin-right"></i>Google</a>
+      <a href="facebook.html" class="w3-bar-item w3-button"><i class="fa fa-facebook w3-margin-right"></i>Facebook</a>
+      <a href="email.html" class="w3-bar-item w3-button"><i class="fa fa-envelope w3-margin-right"></i>Email</a>
+    </div>
+  </div>
+ </div>
+</div>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Sign in</a>
+</div>
+   
+  
+<img alt="" style="width: 100%; position: relative;" src="Images/Cover-page.png">
+<p style="left: 37%; top: 50%; position: absolute; font-size: 500%; font-family: inherit;">1K Journeys</p>
+
+
+<!-- Footer -->
+<footer class="w3-container w3-theme-d3 w3-padding-16">
+  <h5>1,000 Journeys</h5>
+</footer>
+
+<footer class="w3-container w3-theme-d5">
+  <p>Powered by <a href="http://affectmh.org" target="_blank">Affect</a></p>
+</footer>
+
+
+</body>
+</html>
