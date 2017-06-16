@@ -21,6 +21,8 @@
   <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-messaging.js"></script>
   
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
   <script src="default.js"></script>
@@ -38,6 +40,24 @@
   	else
   		document.getElementById('profile_text').textContent = currentUser.email.substring(0, currentUser.email.indexOf('@'));
   	
+  	if(currentUser.photoURL)
+  		var photoURL = currentUser.photoURL;
+  	else if(currentUser.providerData[0].photoURL)
+  		var photoURL = currentUser.providerData[0].photoURL;
+  		
+  	document.getElementById('profile_pic').src = photoURL;
+  	document.getElementById('profile_pic_small').src = photoURL;
+  	
+  	var database = firebase.database(firebase.app());
+    database.goOnline();
+    
+    var userNode = database.ref('users/' + currentUser.uid);
+    
+    //userNode.child('DOB').set('9/16/1989');
+	userNode.child('DOB').once('value').then(function(snapshot) {
+		document.getElementById('DOB').childNodes[1].textContent = snapshot.val();
+	});
+  	
   	document.getElementById('profile_name_submit').onkeyup =
   		function(e){
   			if(e.keyCode == 13) { // ENTER
@@ -46,7 +66,8 @@
 				document.getElementById('profile_name_edit').style.display = 'none';	     				
 				document.getElementById('profile_text').textContent = document.getElementById('profile_name_submit').value;
 				document.getElementById('profile_text').style.display = 'initial';
-				firebase.auth().currentUser.updateProfile({displayName: newName});
+				firebase.auth().currentUser.updateProfile({displayName: newName});					
+				
 			}
   			else if(e.keyCode == 27) { // ESC
   				document.getElementById('profile_name_submit').style.display = 'none';
@@ -79,7 +100,7 @@
   </div>
 
   <div class="w3-dropdown-hover w3-hide-small" style="float: right;">
-    <button class="w3-button w3-padding-large" title="My Account"><img src="Images/empty_profile.png" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></button>    
+    <button class="w3-button w3-padding-large" title="My Account"><img id="profile_pic_small" src="Images/empty_profile.png" class="w3-circle" style="height:25px;width:25px" alt="Avatar"></button>    
     <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:150px; margin-left: -90px; float: left;">
       <a href="#" class="w3-bar-item w3-button" onclick="firebase.auth().signOut(); window.location.href = 'Index.html';">Sign Out</a>
     </div>
@@ -115,11 +136,11 @@
          	<input id="profile_name_submit" style="display: none;" autocomplete="on"
          		onmouseover="document.getElementById('profile_name_edit').style.display = 'none'">
 	     	<label id="profile_text">My Profile</label></h4>
-         <p class="w3-center"><img src="Images/empty_profile.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+         <p class="w3-center"><img id="profile_pic" src="Images/empty_profile.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
          <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
-         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
+         <p id="DOB"><i id="DOB_edit" style="" class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
         </div>
       </div>
       <br>

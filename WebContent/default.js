@@ -57,6 +57,10 @@
 	      firebase.auth().onAuthStateChanged(function(user) {
 	        if (user) {
 	          // User is signed in.
+	        	
+	        	if(document.title != "Home")
+	        	  window.location.href = "Home.html";
+	        	
 	          var displayName = user.displayName;
 	          var email = user.email;
 	          var emailVerified = user.emailVerified;
@@ -68,9 +72,6 @@
 	          //document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
 	          //document.getElementById('quickstart-sign-in').textContent = 'Sign out';
 	          //document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
-	          
-	          if(document.title != "Home")
-	        	  window.location.href = "Home.html";
 	          
 	          // [END_EXCLUDE]
 	        } else {
