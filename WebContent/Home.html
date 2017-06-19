@@ -25,6 +25,7 @@
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-messaging.js"></script>
   
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+  <script src="https://rawgit.com/hongru/canvas2image/master/canvas2image.js"></script>
   <script src="default.js"></script>
   <script type="text/javascript">
   
@@ -80,7 +81,7 @@
   
   </script>
 
-<body class="w3-theme-l5">
+<body class="w3-theme-l5" style="overflow: hidden;">
 
 <!-- Navbar -->
 <div class="w3-top">
@@ -161,22 +162,22 @@
          <div class="w3-row-padding">
          <br>
            <div class="w3-half">
-             <img src="/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">
+             <img src="Images/lights.jpg" style="width:100%" class="w3-margin-bottom">
            </div>
            <div class="w3-half">
-             <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+             <img src="Images/nature.jpg" style="width:100%" class="w3-margin-bottom">
            </div>
            <div class="w3-half">
-             <img src="/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
+             <img src="Images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
            </div>
            <div class="w3-half">
-             <img src="/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">
+             <img src="Images/forest.jpg" style="width:100%" class="w3-margin-bottom">
            </div>
            <div class="w3-half">
-             <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+             <img src="Images/nature.jpg" style="width:100%" class="w3-margin-bottom">
            </div>
            <div class="w3-half">
-             <img src="/w3images/fjords.jpg" style="width:100%" class="w3-margin-bottom">
+             <img src="Images/fjords.jpg" style="width:100%" class="w3-margin-bottom">
            </div>
          </div>
           </div>
@@ -232,7 +233,95 @@
         </div>
       </div>
       
-      <div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
+      <div id="wrapper" style="height: 600px;" class="w3-container w3-card-2 w3-white w3-round w3-margin"> 
+      
+      <div id="blackboardPlaceholder" class="w3-row-padding w3-margin" style="padding-top:10px;"><br>
+      
+      	<p><!-- Tool Selector -->
+		<select name="selector" id="selector"> 
+		<option value="chalk">Chalk</option> 
+		<option value="line">Line</option> 
+		<option value="rect">Rectangle</option> 
+		</select> 
+		</p>
+      
+      	<!-- Canvas Begins -->
+		<canvas id="drawingCanvas"> 
+			<p class="noscript">
+				We're sorry, this web application is currently not supported with your browser. Please use an alternate browser or download a supported <br />
+				browser. Supported browsers: 
+				<a href="http://www.google.com/chrome">Google Chrome</a>, 
+				<a href="http://www.opera.com">Opera</a>, 
+				<a href="http://www.mozilla.com">Firefox</a>, 
+				<a href="http://www.apple.com/safari">Safari</a>, <br />and 
+				<a href="http://www.konqueror.org">Konqueror</a>. Also make sure your JavaScript is enabled.
+			</p> 
+		</canvas> 
+		<!-- Canvas Ends -->
+		
+		<!-- Chalk Pieces -->
+		<div id="whiteChalk_button"> 
+		<img src="Images/white.png" width="100%" height="17" style="margin-left: 0%" onclick="context.strokeStyle = '#FFFFFF';" /> 
+		</div> 
+		<div id="redChalk_button"> 
+		<img src="Images/red.png" width="100%" height="17" style="margin-left: 100%" onclick="context.strokeStyle = '#F00000';" /> 
+		</div> 
+		<div id="orangeChalk_button"> 
+		<img src="Images/orange.png" width="100%" height="17" style="margin-left: 200%" onclick="context.strokeStyle = '#ff9600';" /> 
+		</div> 
+		<div id="yellowChalk_button"> 
+		<img src="Images/yellow.png" width="100%" height="17" style="margin-left: 300%" onclick="context.strokeStyle = '#fff600';" /> 
+		</div> 
+		<div id="greenChalk_button"> 
+		<img src="Images/green.png" width="100%" height="17" style="margin-left: 400%" onclick="context.strokeStyle = '#48ff00';" /> 
+		</div> 
+		<div id="blueChalk_button"> 
+		<img src="Images/blue.png" width="100%" height="17" style="margin-left: 500%" onclick="context.strokeStyle = '#001eff';" /> 
+		</div> 
+		<div id="pinkChalk_button"> 
+		<img src="Images/pink.png" width="100%" height="17" style="margin-left: 600%" onclick="context.strokeStyle = '#ff00d2';" /> 
+		</div>
+		
+		<!-- Eraser -->
+		<div id="eraser" onclick="context.strokeStyle = '#424242'; context.lineWidth = '22';"></div>
+      
+      </div>
+      
+      <!-- Clear Canvas Button -->
+		<div id="nuke" title="Clear Canvas"> 
+		<a href="javascript:location.reload(true)"> 
+		<img src="Images/burn.png" alt="Clear Canvas" width="16" height="16" style="margin-top: -30px; margin-right: 10px;" /> 
+		</a>
+		
+		<!-- Save Image -->
+		<div id="saveWrapper"> 
+		<div id="save"> 
+		<img src="Images/save.png" alt="Save Image" width="16" height="16" id="convertpngbtn" title="Save Image"
+		onclick="window.open(document.getElementById('drawingCanvas').toDataURL('image/png'),'Image')" /> 
+		</div> 
+		<div id="textdownload"> 
+		 Right click the image to download. 
+		 <img src="Images/cross.png" alt="Cancel" width="16" height="16" id="resetbtn" title="Continue Drawing" /> 
+		</div> 
+		</div>
+		
+		</div>
+		
+		<!-- Toggle Stroke Weight -->
+		<!-- <img src="Images/toggle.png" width="16" height="16" id="stroke-subtract" title="Decrease Stroke" onclick="context.lineWidth--;" /> 
+		<img src="Images/toggle-expand.png" width="16" height="16" id="stroke-add" title="Increase Stroke" onclick="context.lineWidth++;" /> 
+		   -->
+		<!-- Stroke Weight Panel -->
+		<div id="strokeWeight"> 
+		<div class="stroke" style="width: 30px; height: 32px" onclick="context.lineWidth = '1.0';" ></div>
+		<div class="stroke" style="width: 30px; height: 32px" onclick="context.lineWidth = '6.0';" ></div>
+		<div class="stroke" style="width: 30px; height: 32px" onclick="context.lineWidth = '9.0';" ></div>
+		<div class="stroke" style="width: 30px; height: 32px" onclick="context.lineWidth = '13.0';" ></div>
+		</div>
+      
+      </div>      
+      
+      <!-- <div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
         <img src="Images/empty_profile.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <span class="w3-right w3-opacity">1 min</span>
         <h4>John Doe</h4><br>
@@ -240,10 +329,10 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
           <div class="w3-row-padding" style="margin:0 -16px">
             <div class="w3-half">
-              <img src="/w3images/lights.jpg" style="width:100%" alt="Northern Lights" class="w3-margin-bottom">
+              <img src="Images/lights.jpg" style="width:100%" alt="Northern Lights" class="w3-margin-bottom">
             </div>
             <div class="w3-half">
-              <img src="/w3images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
+              <img src="Images/nature.jpg" style="width:100%" alt="Nature" class="w3-margin-bottom">
           </div>
         </div>
         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
@@ -251,7 +340,7 @@
       </div>
       
       <div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
-        <img src="/w3images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <img src="Images/avatar5.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <span class="w3-right w3-opacity">16 min</span>
         <h4>Jane Doe</h4><br>
         <hr class="w3-clear">
@@ -261,16 +350,16 @@
       </div>  
 
       <div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
-        <img src="/w3images/avatar6.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <img src="Images/avatar6.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <span class="w3-right w3-opacity">32 min</span>
         <h4>Angie Jane</h4><br>
         <hr class="w3-clear">
         <p>Have you seen this?</p>
-        <img src="/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
+        <img src="Images/nature.jpg" style="width:100%" class="w3-margin-bottom">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
-      </div> 
+      </div>  -->
       
     <!-- End Middle Column -->
     </div>
@@ -280,7 +369,7 @@
       <div class="w3-card-2 w3-round w3-white w3-center">
         <div class="w3-container">
           <p>Upcoming Events:</p>
-          <img src="/w3images/forest.jpg" alt="Forest" style="width:100%;">
+          <img src="Images/forest.jpg" alt="Forest" style="width:100%;">
           <p><strong>Holiday</strong></p>
           <p>Friday 15:00</p>
           <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
@@ -291,7 +380,7 @@
       <div class="w3-card-2 w3-round w3-white w3-center">
         <div class="w3-container">
           <p>Friend Request</p>
-          <img src="/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
+          <img src="Images/avatar6.png" alt="Avatar" style="width:50%"><br>
           <span>Jane Doe</span>
           <div class="w3-row w3-opacity">
             <div class="w3-half">
