@@ -22,7 +22,7 @@
 	
 </head>
 
-<body class="w3-theme-l5" style="overflow: hidden;">
+<body class="w3-theme-l5" style="overflow: hidden; background-size:cover;" background="Images/Cover-page.png">
 
 <!-- Navbar -->
 <div class="w3-top">
@@ -45,10 +45,206 @@
   <a href="#" class="w3-bar-item w3-button w3-padding-large">Sign in</a>
 </div>
    
+   
+<!-- Modal -->
+<div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-top">
+      <header class="w3-container w3-theme"> 
+        <span onclick="document.getElementById('id01').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+        <h4>Assess risk of heart attack</h4>
+      </header>
+      <div class="w3-padding">
+	     <form id="form">
+	     <div class="w3-row">
+			  <div class="w3-half">
+			  	<h4>Stress at home or work?</h4>
+			    <input id="HW_no_stress" class="w3-radio" type="radio" name="HW_stress" value="HW_no_stress">
+			    <label>Never experience stress</label>
+			    <br>
+			    <input id="HW_some_stress" class="w3-radio" type="radio" name="HW_stress" value="HW_some_stress">
+			    <label>Experienced some periods</label>
+			    <br>
+			    <input id="HW_several_stress" class="w3-radio" type="radio" name="HW_stress" value="HW_several_stress">
+			    <label>Experienced several periods</label>
+			    <br>
+			    <input id="HW_permanent_stress" class="w3-radio" type="radio" name="HW_stress" value="HW_permanent_stress">
+			    <label>Experienced permanent stress</label>
+			  </div>
+			  
+			  <div class="w3-half">
+			  	<h4>Financial stress?</h4>
+			    <input id="Fin_no_stress" class="w3-radio" type="radio" name="Fin_stress" value="Fin_no_stress">
+			    <label>Little or none</label>
+			    <br>
+			    <input id="Fin_moderate_stress" class="w3-radio" type="radio" name="Fin_stress" value="Fin_moderate_stress">
+			    <label>Moderate</label>
+			    <br>
+			    <input id="Fin_high_stress" class="w3-radio" type="radio" name="Fin_stress" value="Fin_high_stress">
+			    <label>High or severe</label>
+			  </div>
+		  </div>
+		
+			<br>
+		
+		  <div class="w3-section">
+		    <input id="life_event" class="w3-check" type="checkbox">
+		    <label>Major life events (past 1 year)</label>
+		    <br><br>
+		    <input id="locus_control" class="w3-check" type="checkbox">
+		    <label>Locus of control? (Do I determine my destiny)</label>
+		    <br><br>
+		    <input id="depression" class="w3-check" type="checkbox">
+		    <label>Felt sad, blue, or depressed for 2 weeks or more in a row during the past 12 months</label>	   
+		  </div>
+		  
+		  <br>
+		  <input type="submit" value="Submit">
+		  <br><br>
+		</form>
+      </div>
+      <footer class="w3-container w3-theme">
+        <p><br></p>
+      </footer>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="id02" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-top">
+      <header class="w3-container w3-theme"> 
+        <span onclick="document.getElementById('id02').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+        <h4>Consent form</h4>
+      </header>
+      
+      <form id="form">
+      <div class="w3-padding" style="overflow-y: scroll; height: 500px;">
+      
+      	<p>
+      	
+      	At Affect Mental Health, our mission is to provide everyone in the world with high quality mental healthcare. In order to track trends and to identify problem areas within mental health and healthcare, we have started the 1,000 Journeys Project. 
+      	<br><br> 
+		This project involves collecting the stories of 1,000 different people personally impacted by mental health and mental healthcare. These stories will help us develop effective solutions to common problems in mental health and healthcare. Furthermore, with the interviewees’ permission, we will share some stories on our online blog to increase awareness about our cause.
+		<br><br> 
+		As an interviewee participant, you will have a casual and open-ended conversation about your mental health journey with one of our trained interviewers in-person, via video chat, or on the phone. All interviews will be audio recorded and will typically last between 30-60 minutes.
+		<br><br> 
+		We understand the very personal nature of these interviews. If at any point during the interview you feel uncomfortable answering any of the questions, simply ask the interviewer to move on to the next one. And if you ever want to end the interview, we will do so immediately, no questions asked.
+		<br><br>
+		After the interview, your recording will be transcribed to help Affect Mental Health develop useful mental health products. Additionally, with your permission, we will develop visual and/or verbal representations of your interview to share on our online blog.
+      	
+      	</p>
+      	
+      	<br>
+            	
+	     <div class="w3-section">
+	     
+	     	<p>
+	     	
+	     	I agree and/or acknowledge that:
+	     	<br><br>
+			1. I have thoroughly read and understand the information written above.
+			<br><br>
+			2. My interview will be recorded on an audio device and stored on a Dropbox account to which only Affect Mental Health employees will have access.
+			<br><br>
+			3. My interview will be used in data analysis efforts to help employees within Affect Mental Health identify issues within the mental health space.
+			<br>     	
+	     	
+	     	</p>
+	     
+	     	<input id="Q4-main" class="w3-check" type="checkbox" onchange="(this.checked)?(document.getElementById('Q4').style.display='block'):(document.getElementById('Q4').style.display='none')">
+		    <label>4. I give my permission for the interview to be published on the 1,000 Journeys online blog in visual form (i.e. through words, symbols, illustrations).</label>
+		    <br><br>
+		    <div id="Q4" style="display: none; padding-left: 30px;">
+			    <input id="locus_control" class="w3-check" type="checkbox">
+			    <label>I give permission for my name to be used on the 1,000 Journeys online blog. If you don't check, you will remain anonymous or be given an alias.</label>
+			    <br><br>
+			    <input id="locus_control" class="w3-check" type="checkbox">
+			    <label>I give permission for a picture of my entire face to be used on the 1,000 Journeys online blog.</label>
+			    <br><br>
+			    <input id="locus_control" class="w3-check" type="checkbox">
+			    <label>I give permission for a picture of a physical feature other than my entire face (e.g. eyes, feet, hands, etc) to be used on the 1,000 Journeys online blog.</label>
+			</div>
+		    <br>
+		    <input id="locus_control" class="w3-check" type="checkbox" onchange="(this.checked && document.getElementById('Q4-main').checked)?(document.getElementById('Q5').style.display='block'):(document.getElementById('Q5').style.display='none')">
+		    <label>5. I give permission for my interview to be video recorded.</label>
+		    <br><br>
+		    <div id="Q5" style="display: none; padding-left: 30px;">
+			    <input id="locus_control" class="w3-check" type="checkbox">
+			    <label>I give permission for clips from my video-recorded interview to be published on the 1,000 Journeys online blog. Otherwise, the recording will only be accessible to employees within Affect Mental Health.</label>
+			    <br><br>
+			</div>
+	     
+	     </div>	          
+      </div>
+      
+      <footer class="w3-container w3-theme">
+      	<input id="consent" class="w3-check" type="checkbox">
+        <label style="padding-left: 10px;">
+        
+        I affirm that I have been fully informed about the logistics and purpose of the 1,000 Journeys interview, and I agree to partake in the interview.
+        
+		</label>
+		
+		<br>
+		
+		<input type="submit" value="Submit" style="float: right;">
+		
+		<br><br>
+		
+      </footer>
+      
+      </form>
+    </div>
+</div>
+
   
-<img alt="" style="width: 100%; position: relative;" src="Images/Cover-page.png">
-<img alt="1K Journeys" src="Images/1KJ.png" style="position:absolute; width:50%; margin:-25% 0 0 -25%; left:50%; top:50%;">
+<!-- <img alt="1K Journeys" src="Images/1KJ.png" style="position:absolute; width:50%; margin:-25% 0 0 -25%; left:50%; top:50%;"> -->
 <!-- p style="left: 37%; top: 50%; position: absolute; font-size: 500%; font-family: Open Sans;">1K Journeys</p-->
+
+<div class="w3-row-padding w3-center w3-margin-top" style="padding-top: 100px;">
+
+<div class="w3-third">
+	<div class="w3-card-2 w3-container" style="min-height:460px; cursor: pointer;" onclick="document.getElementById('id01').style.display='block'">
+		<h3>Assess risk of heart attack</h3><br>
+		<i class="fa fa-desktop w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
+		<p>Stress at home or work?</p>
+		<p>Financial stress?</p>
+		<p>Major life events (past 1 year)?</p>
+
+		<p>Locus of control? (Do I determine my destiny)</p>
+
+		<p>Depression?</p>
+		
+	</div>
+</div>
+
+<div class="w3-third">
+  <div class="w3-card-2 w3-container" style="min-height:460px; cursor: pointer;" onclick="window.location.href = '#'">
+  <h3>View journeys</h3><br>
+  <i class="fa fa-css3 w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
+  <p>Standard CSS only</p>
+  <p>Easy to learn</p>
+  <p>No need for jQuery</p>
+  <p>No JavaScript library</p>
+  </div>
+</div>
+
+<div class="w3-third">
+  <div class="w3-card-2 w3-container" style="min-height:460px; cursor: pointer;" onclick="document.getElementById('id02').style.display='block'">
+  <h3>Create your own journey</h3><br>
+  <i class="fa fa-diamond w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
+  <p>Paper like design</p>
+  <p>Bold colors and shadows</p>
+  <p>Equal across platforms</p>
+  <p>Equal across devices</p>
+  </div>
+</div>
+</div>
+
+<div class="w3-center" style="padding-top: 20px; padding-bottom: 20px;">
+	<button class="w3-btn w3-xlarge w3-theme-dark w3-hover-teal" onclick="window.location.href = 'https://affectmh.org'" style="font-weight:900;">Affect Website</button>
+</div>
 
 
 <!-- Footer -->
