@@ -18,18 +18,53 @@
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
   <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="http://code.highcharts.com/modules/exporting.js"></script>
   <script src="default.js"></script>
   
   <script type="text/javascript">
   
+  function addPlotLine() {	 	 
+	  
+	  Highcharts.charts[0].xAxis[0].addPlotLine({
+          value: Date.UTC(document.getElementById('event_date').value.substring(0,4),
+        		  document.getElementById('event_date').value.substring(5,7),
+        		  document.getElementById('event_date').value.substring(8,10)),
+          color: (document.getElementById('event_color').value == "3")?("red"):((document.getElementById('event_color').value == "2")?("yellow"):("green")),
+			label: {
+				text: document.getElementById('event_name').value,
+		        verticalAlign: 'middle',
+		        textAlign: 'center'
+          },
+          width: 2
+      });
+	  
+  }
+  
   function buildChart() {
 	  Highcharts.chart('container', {
+		  	chart: {
+		        events: {
+		            click: function (e) {
+		                // find the clicked values and the series
+		                var x = Math.round(e.xAxis[0].value),
+		                    y = Math.round(e.yAxis[0].value),
+		                    series = this.series[0];
+
+		                // Add it
+		                series.addPoint([x, y]);
+
+		            }
+		        }
+		    },
+		    
 		  	title: {
 		        text: 'John Doe\'s journey'
 		    },
+		    
 		    subtitle: {
 		        text: ''
 		    },
+		    
 		    xAxis: {
 		    	tickInterval: 31 * 24 * 3600 * 1000,
 		        type: 'datetime',
@@ -90,6 +125,25 @@
 		        pointStart: Date.UTC(2015, 1, 1),
 		        pointInterval: 31 * 24 * 3600 * 1000
 		    }],
+		    
+		    plotOptions: {
+		        series: {
+		            lineWidth: 1,
+		            point: {
+		                events: {
+		                    'click': function () {
+		                        if (this.series.data.length > 1) {
+		                            this.remove();
+		                        }
+		                    }
+		                }
+		            }
+		        }
+		    },
+		    
+		    exporting: {
+		        enabled: true
+		    },
 		    
 		    credits: {
 		        enabled: false
@@ -287,6 +341,37 @@
       <div class="w3-padding">
 	     <div class="w3-row">
 			  <div id="container" style="height: 400px"></div>
+			  <h4>Add a major event</h4>
+			  <table>
+			  	<tr>
+			  		<td>
+			  			<label>Event date:</label>
+			  		</td>
+			  		<td>
+			  			<input type="date" id="event_date">
+			  		</td>
+			  		<td>
+			  			<label>Importance (1-low) (3-high): &nbsp;</label>
+			  		</td>
+			  		<td>
+			  			<input type="number" id="event_color" min="1" max="3">
+			  		</td>
+			  	</tr>
+			  	<tr>
+			  		<td>
+			  			<label>Event name: &nbsp;</label>
+			  		</td>
+			  		<td>
+			  			<input type="text" id="event_name" style="width: 169px"> &nbsp;
+			  		</td>
+			  		<td>
+			  			<button id="add_plotLine" onclick="addPlotLine()">Add event line</button>
+			  		</td>
+			  		<td>
+			  		</td>
+			  	</tr>
+			  </table>
+
 		  </div>
 		
       </div>
