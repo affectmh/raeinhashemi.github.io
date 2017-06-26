@@ -16,9 +16,88 @@
   <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase-auth.js"></script>
-  
   <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="default.js"></script>
+  
+  <script type="text/javascript">
+  
+  function buildChart() {
+	  Highcharts.chart('container', {
+		  	title: {
+		        text: 'John Doe\'s journey'
+		    },
+		    subtitle: {
+		        text: ''
+		    },
+		    xAxis: {
+		    	tickInterval: 31 * 24 * 3600 * 1000,
+		        type: 'datetime',
+		        plotLines: [{
+		            color: 'yellow',
+		            width: 2,
+		            value: Date.UTC(2015, 4, 1),
+		            label: {
+		                text: 'First symptoms: Services on campus',
+		                verticalAlign: 'middle',
+		                textAlign: 'center'
+		            }
+		        },{
+		        	color: 'red',
+		            width: 2,
+		            value: Date.UTC(2015, 7, 1),
+		            label: {
+		                text: 'Psychiatrist: Major depression diagnosis',
+		                verticalAlign: 'middle',
+		                textAlign: 'center'
+		            }
+		        },{
+		        	color: 'yellow',
+		            width: 2,
+		            value: Date.UTC(2015, 10, 1),
+		            label: {
+		                text: 'Started taking Antidepressants',
+		                verticalAlign: 'middle',
+		                textAlign: 'center'
+		            }
+		        },{
+		        	color: 'red',
+		            width: 2,
+		            value: Date.UTC(2016, 5, 1),
+		            label: {
+		                text: 'Insurance dropped Psychiatrist',
+		                verticalAlign: 'middle',
+		                textAlign: 'center'
+		            }
+		        }],
+		        dateTimeLabelFormats: { // don't display the dummy year
+                    month: '%b %y',
+                    year: '%Y'
+                }
+		    },
+	
+		    yAxis: {
+		    	title: {
+		            text: 'Intensity of the event (0-10)'
+		        },
+		        min: 0,
+		        max: 10
+		    },
+	
+		    series: [{
+		    	name: 'Mental health journey',
+		        data: [0, 2, 5, 9, 10, 10, 10, 9, 9, 9, 8, 8, 7, 6, 5, 5, 4, 7, 6, 6, 5, 5, 4],
+		        pointStart: Date.UTC(2015, 1, 1),
+		        pointInterval: 31 * 24 * 3600 * 1000
+		    }],
+		    
+		    credits: {
+		        enabled: false
+		    },
+		});
+  }
+  
+  </script>
 	
 </head>
 
@@ -179,7 +258,7 @@
       </div>
       
       <footer class="w3-container w3-theme">
-      	<input id="consent" class="w3-check" type="checkbox">
+      	<input class="w3-check" type="checkbox" onchange="(this.checked)?(document.getElementById('consent').disabled = false):(document.getElementById('consent').disabled = true)">
         <label style="padding-left: 10px;">
         
         I affirm that I have been fully informed about the logistics and purpose of the 1,000 Journeys interview, and I agree to partake in the interview.
@@ -188,13 +267,32 @@
 		
 		<br>
 		
-		<input type="submit" value="Submit" style="float: right;">
+		<input id="consent" type="submit" value="Submit" style="float: right;" disabled="disabled">
 		
 		<br><br>
 		
       </footer>
       
       </form>
+    </div>
+</div>
+
+<div id="id03" class="w3-modal">
+    <div class="w3-modal-content w3-card-4 w3-animate-top">
+      <header class="w3-container w3-theme"> 
+        <span onclick="document.getElementById('id03').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+        <h4>Mental health journeys</h4>
+      </header>
+      <div class="w3-padding">
+	     <div class="w3-row">
+			  <div id="container" style="height: 400px"></div>
+		  </div>
+		
+      </div>
+      <footer class="w3-container w3-theme">
+        <p><br></p>
+      </footer>
     </div>
 </div>
 
@@ -220,7 +318,7 @@
 </div>
 
 <div class="w3-third">
-  <div class="w3-card-2 w3-container" style="min-height:460px; cursor: pointer;" onclick="window.location.href = '#'">
+  <div class="w3-card-2 w3-container" style="min-height:460px; cursor: pointer;" onclick="document.getElementById('id03').style.display='block'; buildChart();">
   <h3>View journeys</h3><br>
   <i class="fa fa-css3 w3-margin-bottom w3-text-theme" style="font-size:120px"></i>
   <p>Standard CSS only</p>
