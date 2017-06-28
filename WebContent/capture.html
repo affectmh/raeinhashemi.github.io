@@ -28,6 +28,15 @@ function updatePoint() {
 	
 }
 
+function deletePoint() {
+	
+	var chart = Highcharts.charts[0];
+    var selectedPoint = chart.getSelectedPoints()[0];
+    
+    selectedPoint.remove();
+	
+}
+
 function addPlotLine() {	 	 
 	  
 	  var startDate = document.getElementById('event_startdate').value;
@@ -211,6 +220,7 @@ function buildChart() {
 		                        document.getElementById('point_comment').value = this.myData;
 		                        document.getElementById('point_comment').disabled = false;		                        
 		                        document.getElementById('update_point').disabled = false;
+		                        document.getElementById('delete_point').disabled = false;
 		                    }
 		                }
 		            }
@@ -269,17 +279,7 @@ window.onload = function() {
 			  		</td>
 			  		<td>
 			  			<input type="number" id="event_color" min="1" max="3" value="1">
-			  		</td>
-			  		<td></td>
-			  		<td>
-			  			<label>Point comments: &nbsp;</label>
-			  		</td>
-			  		<td>
-			  			<input type="text" id="point_comment" value="" disabled="disabled">
-			  		</td>
-			  		<td>
-			  			<button id="update_point" onclick="updatePoint()" disabled="disabled">Update point</button>
-			  		</td>
+			  		</td>			  					  	
 			  	</tr>			  
 			  	<tr>			  		
 			  		<td>
@@ -296,7 +296,19 @@ window.onload = function() {
 			  		</td>
 			  		<td>
 			  			<button id="add_plotLine" onclick="addPlotLine()" disabled="disabled">Add event</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			  		</td>			  		
+			  		</td>			  
+			  		<td>
+			  			<label>Point comments: &nbsp;</label>
+			  		</td>
+			  		<td>
+			  			<input type="text" id="point_comment" value="" disabled="disabled">
+			  		</td>
+			  		<td>
+			  			<button id="update_point" onclick="updatePoint()" disabled="disabled">Update point</button>
+			  		</td>		
+			  		<td>
+			  			<button id="delete_point" onclick="deletePoint()" disabled="disabled">Delete point</button>
+			  		</td>
 			  	</tr>
 			  	</table>
 			  <br>
