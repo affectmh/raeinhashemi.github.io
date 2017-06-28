@@ -19,6 +19,15 @@
 
 <script type="text/javascript">
 
+function updatePoint() {
+	
+	var chart = Highcharts.charts[0];
+    var selectedPoint = chart.getSelectedPoints()[0];
+    
+    selectedPoint.myData = document.getElementById('point_comment').value;
+	
+}
+
 function addPlotLine() {	 	 
 	  
 	  var startDate = document.getElementById('event_startdate').value;
@@ -76,7 +85,7 @@ function buildChart() {
 		                    series = this.series[0];
 
 		                // Add it
-		                series.addPoint([x, y]);
+		                series.addPoint([x, y]);		               
 
 		            }
 		        },
@@ -101,7 +110,7 @@ function buildChart() {
 		            return { x: point.plotX, y: point.plotY - 20 };
 		        }, */
 		        formatter: function() {
-		            return Date(this.point.x) + ': <br><b>' + this.point.myData + '</b>';
+		            return (new Date(this.point.x)).toDateString() + ': <br>Intensity: ' + this.point.y  + '<br>Comment: <b>' + this.point.myData + '</b>';
 		        }
 		    },
 		    
@@ -198,6 +207,10 @@ function buildChart() {
 		                            var selectedPoints = chart.getSelectedPoints();
 		                            selectedPoints[0].select();		                            
 		                        }
+		                        
+		                        document.getElementById('point_comment').value = this.myData;
+		                        document.getElementById('point_comment').disabled = false;		                        
+		                        document.getElementById('update_point').disabled = false;
 		                    }
 		                }
 		            }
@@ -249,14 +262,24 @@ window.onload = function() {
 			  			<label>Event name: &nbsp;</label>
 			  		</td>
 			  		<td>
-			  			<input type="text" id="event_name" style="width: 169px"> &nbsp;
+			  			<input type="text" id="event_name" style="width: 95%"> &nbsp;
 			  		</td>			  		
 			  		<td>
 			  			<label>Importance (1-low) (3-high): &nbsp;</label>
 			  		</td>
 			  		<td>
 			  			<input type="number" id="event_color" min="1" max="3" value="1">
-			  		</td>			  		
+			  		</td>
+			  		<td></td>
+			  		<td>
+			  			<label>Point comments: &nbsp;</label>
+			  		</td>
+			  		<td>
+			  			<input type="text" id="point_comment" value="" disabled="disabled">
+			  		</td>
+			  		<td>
+			  			<button id="update_point" onclick="updatePoint()" disabled="disabled">Update point</button>
+			  		</td>
 			  	</tr>			  
 			  	<tr>			  		
 			  		<td>
@@ -272,7 +295,7 @@ window.onload = function() {
 			  			<input type="date" id="event_enddate">
 			  		</td>
 			  		<td>
-			  			<button id="add_plotLine" onclick="addPlotLine()" disabled="disabled">Add event</button>
+			  			<button id="add_plotLine" onclick="addPlotLine()" disabled="disabled">Add event</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			  		</td>			  		
 			  	</tr>
 			  	</table>
