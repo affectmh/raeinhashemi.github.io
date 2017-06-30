@@ -2,6 +2,18 @@
 
 html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 
+input[type=number] {
+	width: 50px;
+}
+
+input[type=checkbox], input[type=radio] {
+	-ms-transform: scale(2); /* IE */
+	-moz-transform: scale(2); /* FF */
+	-webkit-transform: scale(2); /* Safari and Chrome */
+	-o-transform: scale(2);
+	vertical-align: bottom;
+}
+
 #wrapper { 
   position:relative; 
   margin:0 auto;
