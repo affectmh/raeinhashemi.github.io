@@ -247,6 +247,183 @@ function buildChart() {
 		});
 }
 
+function buildChart2() {
+	
+	var prov = document.getElementsByName("prov");
+	var app = document.getElementsByName("app");
+	var insur = document.getElementsByName("insur");
+	var fin = document.getElementsByName("fin");
+	var info = document.getElementsByName("info");
+	var social = document.getElementsByName("social");
+	var react = document.getElementsByName("react");
+	var thera = document.getElementsByName("thera");
+	var medic = document.getElementsByName("medic");
+	
+	debugger;
+	
+	var data1 = [];
+	var data2 = [null, null, null, null, null];
+
+	for(var i = 0; i < 5; i++) {
+	   if(prov[i].checked) {
+	       data1.push(parseInt(prov[i].value));
+	       break;
+	   }
+	   
+	   if(i == 4)
+		   data1.push(null);
+	}
+	
+	for(var i = 0; i < 5; i++) {
+	   if(app[i].checked) {
+	       data1.push(parseInt(app[i].value));
+		   break;
+	   }
+	   
+	   if(i == 4)
+		   data1.push(null);
+	}
+	
+	for(var i = 0; i < 5; i++) {
+	   if(insur[i].checked) {
+	       data1.push(parseInt(insur[i].value));
+	       break;
+	   }
+	   
+	   if(i == 4)
+		   data1.push(null);
+	}
+	
+	for(var i = 0; i < 5; i++) {
+	   if(fin[i].checked) {
+	       data1.push(parseInt(fin[i].value));
+	       break;
+	   }
+	   
+	   if(i == 4)
+		   data1.push(null);
+	}
+	
+	for(var i = 0; i < 5; i++) {
+	   if(info[i].checked) {
+	       data1.push(parseInt(info[i].value));
+	       break;
+	   }
+	   
+	   if(i == 4)
+		   data1.push(null);
+	}
+	
+	for(var i = 0; i < 5; i++) {
+	   if(social[i].checked) {
+	       data2.push(parseInt(social[i].value));
+	       break;
+	   }
+	   
+	   if(i == 4)
+		   data2.push(null);
+	}
+	
+	for(var i = 0; i < 5; i++) {
+	   if(react[i].checked) {
+	       data2.push(parseInt(react[i].value));
+	       break;
+	   }
+	   
+	   if(i == 4)
+		   data2.push(null);
+	}
+	
+	for(var i = 0; i < 5; i++) {
+	   if(thera[i].checked) {
+	       data2.push(parseInt(thera[i].value));
+	       break;
+	   }
+	   
+	   if(i == 4)
+		   data2.push(null);
+	}
+	
+	for(var i = 0; i < 5; i++) {
+	   if(medic[i].checked) {
+	       data2.push(parseInt(medic[i].value));
+	       break;
+	   }
+	   
+	   if(i == 4)
+		   data2.push(null);
+	}
+	
+	
+	var xaxis = ['Find provider', 'Make appointment', 'Insurance cover', 'Financial accessibility', 'Inform others', 'Social withdrawal', 'People\'s reactions', 'Therapeutic care', 'Medication treatment'];
+	var yaxis1 = ['Very easy', 'Easy', 'Neutral', 'Hard', 'Very hard'];
+	var yaxis2 = ['Very low', 'Low', 'Neutral', 'High', 'Very high'];	
+		
+	  Highcharts.chart('container2', {
+		  
+		  	chart: {
+		  		backgroundColor:'rgba(255, 255, 255, 0.5)'	
+		  	},
+		  	
+		  	xAxis: [{
+		  		categories: xaxis
+		  	}],
+		  	
+		  	yAxis: [{
+		  		type: 'category',
+		  		categories: yaxis1,	
+		  		title: {
+		  			text: ''
+		  		}
+		  	},{
+		  		type: 'category',
+		  		categories: yaxis2,	
+		  		opposite: true,
+		  		title: {
+		  			text: ''
+		  		}
+		  	}],
+		  	
+		  	series: [{
+		  		type: 'column',
+		  		data: data1
+		  	},{
+		  		yAxis: 1,
+		  		type: 'column',
+		  		data: data2
+		  	}],
+		  	
+		  	title: {
+		        text: ''
+		    },
+		    
+		    subtitle: {
+		        text: ''
+		    },
+		    
+		    tooltip: {
+		        formatter: function () {
+		            var txt = this.series.xAxis.categories[this.point.x] + ' <br> ' + this.series.name + ' : ' + this.series.yAxis.categories[this.point.y];
+
+		            return txt;
+		        }
+
+		    },
+		    
+		    exporting: {
+		    	buttons: {
+		        	contextButton: {
+		        		verticalAlign: 'bottom',
+		            }
+		        }
+		    },
+		    
+		  	credits: {
+		        enabled: false
+	    	},
+	  });
+}
+
 window.onload = function() {
 	
 	buildChart();
@@ -274,7 +451,7 @@ window.onload = function() {
 	<div class="w3-padding">
 	     <div class="w3-row">
 	     	<br><br><br>
-			  <div id="container" style="height: 400px"></div>	
+			  <div id="container" style="height: 400px"></div>
 			  
 			  <table style="width: 100%;">
 			  	<tr>
@@ -339,11 +516,11 @@ window.onload = function() {
 						  		</td>
 						  		<td>
 						  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="prov1" name="prov">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="prov2" name="prov">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="prov3" name="prov">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="prov4" name="prov">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="prov5" name="prov">
+						  			<input type="radio" id="prov1" name="prov" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="prov2" name="prov" value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="prov3" name="prov" value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="prov4" name="prov" value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="prov5" name="prov" value="4">
 						  		<br><br>
 						  		</td>
 						  	</tr>
@@ -353,11 +530,11 @@ window.onload = function() {
 						  		</td>
 						  		<td>
 						  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="app1" name="app">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="app2" name="app">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="app3" name="app">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="app4" name="app">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="app5" name="app">
+						  			<input type="radio" id="app1" name="app" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="app2" name="app" value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="app3" name="app" value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="app4" name="app" value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="app5" name="app" value="4">
 						  		<br><br>
 						  		</td>
 						  	</tr>
@@ -367,11 +544,11 @@ window.onload = function() {
 						  		</td>
 						  		<td>
 						  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="insur1" name="insur">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="insur2" name="insur">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="insur3" name="insur">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="insur4" name="insur">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="insur5" name="insur">
+						  			<input type="radio" id="insur1" name="insur" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="insur2" name="insur" value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="insur3" name="insur" value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="insur4" name="insur" value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="insur5" name="insur" value="4">
 						  		<br><br>
 						  		</td>
 						  	</tr>
@@ -381,11 +558,11 @@ window.onload = function() {
 						  		</td>
 						  		<td>
 						  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="fin1" name="fin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="fin1" name="fin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="fin1" name="fin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="fin1" name="fin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="fin1" name="fin">
+						  			<input type="radio" id="fin1" name="fin" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="fin1" name="fin" value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="fin1" name="fin" value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="fin1" name="fin" value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="fin1" name="fin" value="4">
 						  		<br><br>
 						  		</td>
 						  	</tr>
@@ -395,11 +572,11 @@ window.onload = function() {
 						  		</td>
 						  		<td>
 						  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="info1" name="info">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="info2" name="info">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="info3" name="info">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="info4" name="info">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="info5" name="info">
+						  			<input type="radio" id="info1" name="info" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="info2" name="info" value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="info3" name="info" value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="info4" name="info" value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="info5" name="info" value="4">
 						  		<br><br>
 						  		</td>
 						  	</tr>
@@ -416,11 +593,11 @@ window.onload = function() {
 						  		</td>
 						  		<td>
 						  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="social1" name="social">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="social2" name="social">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="social3" name="social">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="social4" name="social">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="social5" name="social">
+						  			<input type="radio" id="social1" name="social" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="social2" name="social" value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="social3" name="social" value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="social4" name="social" value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="social5" name="social" value="4">
 						  		<br><br>
 						  		</td>
 						  	</tr>
@@ -430,11 +607,11 @@ window.onload = function() {
 						  		</td>
 						  		<td>
 						  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="react1" name="react">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="react2" name="react">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="react3" name="react">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="react4" name="react">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="react5" name="react">
+						  			<input type="radio" id="react1" name="react" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="react2" name="react" value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="react3" name="react" value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="react4" name="react" value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="react5" name="react" value="4">
 						  		<br><br>
 						  		</td>
 						  	</tr>
@@ -444,11 +621,11 @@ window.onload = function() {
 						  		</td>
 						  		<td>
 						  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="thera1" name="thera">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="thera2" name="thera">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="thera3" name="thera">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="thera4" name="thera">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="thera5" name="thera">
+						  			<input type="radio" id="thera1" name="thera" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="thera2" name="thera" value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="thera3" name="thera" value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="thera4" name="thera" value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="thera5" name="thera" value="4">
 						  		<br><br>
 						  		</td>
 						  	</tr>
@@ -458,11 +635,11 @@ window.onload = function() {
 						  		</td>
 						  		<td>
 						  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="medic1" name="medic">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="medic2" name="medic">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="medic3" name="medic">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="medic4" name="medic">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						  			<input type="radio" id="medic5" name="medic">
+						  			<input type="radio" id="medic1" name="medic" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="medic2" name="medic" value="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="medic3" name="medic" value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="medic4" name="medic" value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						  			<input type="radio" id="medic5" name="medic" value="4">
 						  		<br><br>
 						  		</td>
 						  	</tr>
@@ -482,7 +659,7 @@ window.onload = function() {
 									  <option value="relapse">8. Relapse</option>
 									</select>
 									&nbsp;&nbsp;
-									<input type="submit" value="Submit">
+									<input type="button" value="Submit" onclick="buildChart2()">
 									<br><br>
 						  		</td>
 						  	</tr>
@@ -534,13 +711,15 @@ window.onload = function() {
 							  		<td>
 							  			<textarea id="point_comment" cols="40" rows="5" disabled="disabled"></textarea>
 							  		</td>
-							  		<td style="vertical-align: top;">
+							  		<td style="vertical-align: top; padding-left: 10px">
 							  			<button id="update_point" onclick="updatePoint()" style="width: 100%" disabled="disabled">Update point</button><br>
 							  			<button id="delete_point" onclick="deletePoint()" style="width: 100%" disabled="disabled">Delete point</button>
 							  		</td>
 							  	</tr>
-							  </table>
-						  <br>
+						  </table>
+						  <br><br>
+						  
+						  <div id="container2" style="height: 350px"></div>	
 			  		</td>			  		
 			  	</tr>
 			  </table>
