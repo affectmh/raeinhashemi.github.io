@@ -374,14 +374,18 @@ function buildChart2() {
 		  		categories: yaxis1,	
 		  		title: {
 		  			text: ''
-		  		}
+		  		},
+		  		min: 0,
+		  		max: 4
 		  	},{
 		  		type: 'category',
 		  		categories: yaxis2,	
 		  		opposite: true,
 		  		title: {
 		  			text: ''
-		  		}
+		  		},
+		  		min: 0,
+		  		max: 4
 		  	}],
 		  	
 		  	series: [{
@@ -399,6 +403,12 @@ function buildChart2() {
 		    
 		    subtitle: {
 		        text: ''
+		    },
+		    
+		    plotOptions: {
+		        column: {
+			        minPointLength: 3
+			    }
 		    },
 		    
 		    tooltip: {
