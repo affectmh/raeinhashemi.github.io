@@ -13,5 +13,9 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="C:/Users/Raeen/workspace/1K Journeys/src/mongo-java-driver-3.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Raeen/workspace/1K Journeys/src/bson-3.4.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Raeen/workspace/1K Journeys/src/mongodb-driver-3.4.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Raeen/workspace/1K Journeys/src/mongodb-driver-core-3.4.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
